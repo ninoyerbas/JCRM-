@@ -424,4 +424,7 @@ def get_stats():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    # Debug mode should only be enabled in development
+    # Set DEBUG=False or remove debug parameter for production
+    debug_mode = os.environ.get('FLASK_DEBUG', 'True').lower() == 'true'
+    app.run(debug=debug_mode, host='0.0.0.0', port=5000)
