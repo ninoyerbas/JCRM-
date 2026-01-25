@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Activities - JCRM{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h2>Activities</h2>
+        <button onclick="showAddActivityModal()" class="btn btn-primary">+ Add Activity</button>
+    </div>
+    
+    <div id="activities-list" class="table-container">
+        <p class="loading">Loading activities...</p>
+    </div>
+</div>
+
+<!-- Add/Edit Activity Modal -->
+<div id="activity-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeActivityModal()">&times;</span>
+        <h3 id="modal-title">Add Activity</h3>
+        <form id="activity-form" onsubmit="saveActivity(event)">
+            <input type="hidden" id="activity-id">
+            
+            <div class="form-group">
+                <label for="activity-client">Client *</label>
+                <select id="activity-client" required>
+                    <option value="">Select a client</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity-type">Type *</label>
+                <select id="activity-type" required>
+                    <option value="call">Call</option>
+                    <option value="email">Email</option>
+                    <option value="meeting">Meeting</option>
+                    <option value="note">Note</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity-subject">Subject *</label>
+                <input type="text" id="activity-subject" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="activity-date">Date</label>
+                <input type="datetime-local" id="activity-date">
+            </div>
+            
+            <div class="form-group">
+                <label for="activity-description">Description</label>
+                <textarea id="activity-description" rows="4"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" onclick="closeActivityModal()" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/activities.js') }}"></script>
+{% endblock %}
