@@ -11,7 +11,7 @@ import os
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///crm.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'dev-secret-key-change-in-production'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or 'dev-secret-key-change-in-production'
 
 db = SQLAlchemy(app)
 
@@ -282,12 +282,17 @@ def create_activity():
     """Create a new activity"""
     data = request.get_json()
     
+    try:
+        activity_date = datetime.fromisoformat(data['date']) if 'date' in data and data['date'] else datetime.utcnow()
+    except (ValueError, TypeError):
+        activity_date = datetime.utcnow()
+    
     activity = Activity(
         client_id=data['client_id'],
         type=data['type'],
         subject=data['subject'],
         description=data.get('description', ''),
-        date=datetime.fromisoformat(data['date']) if 'date' in data else datetime.utcnow()
+        date=activity_date
     )
     
     db.session.add(activity)
@@ -304,8 +309,11 @@ def update_activity(activity_id):
     activity.type = data.get('type', activity.type)
     activity.subject = data.get('subject', activity.subject)
     activity.description = data.get('description', activity.description)
-    if 'date' in data:
-        activity.date = datetime.fromisoformat(data['date'])
+    if 'date' in data and data['date']:
+        try:
+            activity.date = datetime.fromisoformat(data['date'])
+        except (ValueError, TypeError):
+            pass  # Keep existing date if invalid format
     
     db.session.commit()
     
@@ -338,10 +346,17 @@ def create_task():
     """Create a new task"""
     data = request.get_json()
     
+    due_date = None
+    if 'due_date' in data and data['due_date']:
+        try:
+            due_date = datetime.fromisoformat(data['due_date'])
+        except (ValueError, TypeError):
+            pass  # Leave as None if invalid format
+    
     task = Task(
         title=data['title'],
         description=data.get('description', ''),
-        due_date=datetime.fromisoformat(data['due_date']) if 'due_date' in data and data['due_date'] else None,
+        due_date=due_date,
         status=data.get('status', 'pending'),
         priority=data.get('priority', 'medium')
     )
@@ -360,7 +375,13 @@ def update_task(task_id):
     task.title = data.get('title', task.title)
     task.description = data.get('description', task.description)
     if 'due_date' in data:
-        task.due_date = datetime.fromisoformat(data['due_date']) if data['due_date'] else None
+        if data['due_date']:
+            try:
+                task.due_date = datetime.fromisoformat(data['due_date'])
+            except (ValueError, TypeError):
+                pass  # Keep existing due_date if invalid format
+        else:
+            task.due_date = None
     task.status = data.get('status', task.status)
     task.priority = data.get('priority', task.priority)
     

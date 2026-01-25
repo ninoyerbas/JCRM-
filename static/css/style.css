@@ -407,6 +407,26 @@ tr:hover {
     font-size: 0.75rem;
 }
 
+/* Success/Error Messages */
+.flash-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 1rem 1.5rem;
+    color: white;
+    border-radius: 4px;
+    z-index: 2000;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.flash-message.success {
+    background-color: #27ae60;
+}
+
+.flash-message.error {
+    background-color: #e74c3c;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .nav-container {

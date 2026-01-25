@@ -1,5 +1,7 @@
 // Tasks management functionality
 
+const DESCRIPTION_TRUNCATE_LENGTH = 50;
+
 let tasks = [];
 let editingTaskId = null;
 
@@ -42,7 +44,7 @@ function displayTasks() {
                 ${tasks.map(task => `
                     <tr>
                         <td>${task.title}</td>
-                        <td>${task.description ? task.description.substring(0, 50) + '...' : 'N/A'}</td>
+                        <td>${task.description ? task.description.substring(0, DESCRIPTION_TRUNCATE_LENGTH) + '...' : 'N/A'}</td>
                         <td>${formatDateOnly(task.due_date)}</td>
                         <td><span class="badge badge-${task.priority}">${task.priority}</span></td>
                         <td><span class="badge badge-${task.status}">${task.status}</span></td>

@@ -1,5 +1,7 @@
 // Activities management functionality
 
+const DESCRIPTION_TRUNCATE_LENGTH = 50;
+
 let activities = [];
 let clients = [];
 let editingActivityId = null;
@@ -64,7 +66,7 @@ function displayActivities() {
                             <td>${activity.subject}</td>
                             <td>${client ? client.name : 'Unknown'}</td>
                             <td>${formatDate(activity.date)}</td>
-                            <td>${activity.description ? activity.description.substring(0, 50) + '...' : 'N/A'}</td>
+                            <td>${activity.description ? activity.description.substring(0, DESCRIPTION_TRUNCATE_LENGTH) + '...' : 'N/A'}</td>
                             <td>
                                 <button onclick="editActivity(${activity.id})" class="btn btn-primary action-btn">Edit</button>
                                 <button onclick="deleteActivity(${activity.id})" class="btn btn-danger action-btn">Delete</button>

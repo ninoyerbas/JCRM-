@@ -3,17 +3,7 @@
 // Show success message
 function showMessage(message, type = 'success') {
     const messageDiv = document.createElement('div');
-    messageDiv.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 1rem 1.5rem;
-        background-color: ${type === 'success' ? '#27ae60' : '#e74c3c'};
-        color: white;
-        border-radius: 4px;
-        z-index: 2000;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    `;
+    messageDiv.className = `flash-message ${type}`;
     messageDiv.textContent = message;
     document.body.appendChild(messageDiv);
     
