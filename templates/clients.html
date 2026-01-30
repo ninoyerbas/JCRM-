@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Clients - JCRM{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h2>Clients</h2>
+        <div class="header-actions">
+            <input type="text" id="search-input" placeholder="Search clients..." class="search-input">
+            <select id="status-filter" class="filter-select">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+            </select>
+            <button onclick="showAddClientModal()" class="btn btn-primary">+ Add Client</button>
+        </div>
+    </div>
+    
+    <div id="clients-list" class="table-container">
+        <p class="loading">Loading clients...</p>
+    </div>
+</div>
+
+<!-- Add/Edit Client Modal -->
+<div id="client-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeClientModal()">&times;</span>
+        <h3 id="modal-title">Add Client</h3>
+        <form id="client-form" onsubmit="saveClient(event)">
+            <input type="hidden" id="client-id">
+            
+            <div class="form-group">
+                <label for="client-name">Name *</label>
+                <input type="text" id="client-name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="client-email">Email *</label>
+                <input type="email" id="client-email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="client-phone">Phone</label>
+                <input type="tel" id="client-phone">
+            </div>
+            
+            <div class="form-group">
+                <label for="client-company">Company</label>
+                <input type="text" id="client-company">
+            </div>
+            
+            <div class="form-group">
+                <label for="client-address">Address</label>
+                <textarea id="client-address" rows="3"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="client-status">Status</label>
+                <select id="client-status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" onclick="closeClientModal()" class="btn btn-secondary">Cancel</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/clients.js') }}"></script>
+{% endblock %}

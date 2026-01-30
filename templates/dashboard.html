@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - JCRM{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Dashboard</h2>
+    
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h3 id="total-clients">0</h3>
+            <p>Total Clients</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="active-clients">0</h3>
+            <p>Active Clients</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="total-contacts">0</h3>
+            <p>Contacts</p>
+        </div>
+        <div class="stat-card">
+            <h3 id="pending-tasks">0</h3>
+            <p>Pending Tasks</p>
+        </div>
+    </div>
+    
+    <div class="dashboard-sections">
+        <div class="section">
+            <h3>Recent Activities</h3>
+            <div id="recent-activities" class="list-container">
+                <p class="empty-message">No recent activities</p>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h3>Upcoming Tasks</h3>
+            <div id="upcoming-tasks" class="list-container">
+                <p class="empty-message">No upcoming tasks</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
