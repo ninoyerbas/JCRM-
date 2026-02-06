@@ -1,6 +1,12 @@
-# JCRM - Julio's Client Relationship Manager
+# JCRM - Customer Relationship Management System
 
-A fully functional web-based CRM (Client Relationship Manager) application for managing clients, contacts, activities, and tasks.
+**Author:** Julio Cesar Mendez Tobar  
+**Copyright:** © 2024-2026 Julio Cesar Mendez Tobar. All Rights Reserved.  
+**License:** Proprietary  
+
+## About
+
+A fully functional web-based CRM (Customer Relationship Management) application for managing clients, contacts, activities, and tasks.
 
 ## Features
 
@@ -23,7 +29,8 @@ A fully functional web-based CRM (Client Relationship Manager) application for m
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/ninoyerbas/JCRM-.git
+git clone https://github.com/ninoyerbas/JCRM-.git  
+# Note: Repository URL contains legacy username for compatibility
 cd JCRM-
 ```
 
@@ -122,10 +129,30 @@ The application is built with simplicity and functionality in mind:
 - RESTful API design
 - SQLite for easy setup and portability
 
+## Copyright Notice
+
+This software is the proprietary property of Julio Cesar Mendez Tobar.
+Unauthorized copying, distribution, modification, or use is strictly prohibited.
+
+For licensing inquiries, please contact the author.
+
 ## License
 
-MIT License - Feel free to use and modify as needed.
+**Proprietary Software License**
+
+Copyright (c) 2024-2026 Julio Cesar Mendez Tobar. All Rights Reserved.
+
+This software and associated documentation files (the "Software") are the 
+proprietary and confidential information of Julio Cesar Mendez Tobar.
+
+**You may NOT:**
+- Copy, modify, or distribute the Software
+- Reverse engineer, decompile, or disassemble the Software
+- Remove or alter any copyright notices
+- Use the Software for commercial purposes without a license
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 
 ## Author
 
-Julio Yerbas
+**Julio Cesar Mendez Tobar**
